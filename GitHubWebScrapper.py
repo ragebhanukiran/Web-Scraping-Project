@@ -7,7 +7,7 @@ response = requests.get(topics_url)
 page_content = response.text
 
 
-with open('../Practice/webpage.html', 'w', encoding='utf-8') as f:
+with open('webpage.html', 'w', encoding='utf-8') as f:
     f.write(page_content)
 
 
