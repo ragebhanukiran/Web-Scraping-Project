@@ -69,6 +69,7 @@ def get_topic_repos(topic_doc):
 def scrape_topic(topic_url, path):
     if os.path.exists(path):
         print("the file {} already exists. Skipping... ".format(path))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     topic_df = get_topic_repos(get_topic_page(topic_url))
     topic_df.to_csv(path, index=None)
 
