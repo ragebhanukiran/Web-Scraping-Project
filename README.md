@@ -23,7 +23,7 @@ This Python script scrapes GitHub topics and their top repositories using **Beau
 ## 📦 Installation
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/github-topics-scraper.git
+https://github.com/ragebhanukiran/Web-Scraping-Project.git
 cd github-topics-scraper
 ```
 
