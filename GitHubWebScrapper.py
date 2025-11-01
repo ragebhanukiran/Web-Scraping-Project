@@ -97,17 +97,25 @@ def get_topic_urls(doc):
   for tag in topic_link_tags:
     topic_urls.append(base_url+tag['href'])
   return topic_urls
+
 def scrape_topics():
-  topics_url = 'https://github.com/topics'
-  response = requests.get(topics_url)
-  if response.status_code != 200:
-    raise Exception('Failed to load page {}'.format(topics_url))
-  topics_dict = {
-      'title': get_topic_titles(doc),
-      'description' : get_topic_descs(doc),
-      'url' : get_topic_urls(doc)
-  }
-  return pd.DataFrame(topics_dict)
+    topics_url = 'https://github.com/topics'
+    response = requests.get(topics_url)
+    if response.status_code != 200:
+        raise Exception('Failed to load page {}'.format(topics_url))
+    
+    doc = BeautifulSoup(response.text, 'html.parser')
+
+    topics_dict = {
+        'title': get_topic_titles(doc),
+        'description': get_topic_descs(doc),
+        'url': get_topic_urls(doc)
+    }
+    
+    topics_df = pd.DataFrame(topics_dict)
+    topics_df.to_csv('topics.csv', index=False)   
+    print("topics.csv created successfully!")
+    return topics_df
 
 
 def scrape_topics_repos():
